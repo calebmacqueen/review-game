@@ -1,0 +1,23 @@
+<div class="game-board">
+  <table class="board-table" role="table" aria-label="Game board">
+    <thead>
+      <tr>
+        <th *ngFor="let cat of board">{{ cat.name }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- assume each category has the same number of questions -->
+      <tr *ngFor="let _row of board[0].questions; let rowIndex = index">
+        <td *ngFor="let cat of board; let catIndex = index">
+          <button
+            class="tile"
+            (click)="onTileClick(catIndex, rowIndex, cat.questions[rowIndex])"
+            type="button"
+          >
+            {{ cat.questions[rowIndex].points }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
