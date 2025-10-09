@@ -2,22 +2,28 @@
   <table class="board-table" role="table" aria-label="Game board">
     <thead>
       <tr>
-        <th *ngFor="let cat of board">{{ cat.name }}</th>
+        @for (cat of board; track cat) {
+          <th>{{ cat.name }}</th>
+        }
       </tr>
     </thead>
     <tbody>
       <!-- assume each category has the same number of questions -->
-      <tr *ngFor="let _row of board[0].questions; let rowIndex = index">
-        <td *ngFor="let cat of board; let catIndex = index">
-          <button
-            class="tile"
-            (click)="onTileClick(catIndex, rowIndex, cat.questions[rowIndex])"
-            type="button"
-          >
-            {{ cat.questions[rowIndex].points }}
-          </button>
-        </td>
-      </tr>
+      @for (_row of board[0].questions; let rowIndex = $index; track _row) {
+        <tr>
+          @for (cat of board; let catIndex = $index; track cat) {
+            <td>
+              <button
+                class="tile"
+                (click)="onTileClick(catIndex, rowIndex, cat.questions[rowIndex])"
+                type="button"
+              >
+                {{ cat.questions[rowIndex].points }}
+              </button>
+            </td>
+          }
+        </tr>
+      }
     </tbody>
   </table>
 </div>
