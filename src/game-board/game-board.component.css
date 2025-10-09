@@ -1,14 +1,16 @@
 .game-board {
   width: 100%;
+  padding-left: 6%;
+  padding-right: 6%;
+  box-sizing: border-box;
   overflow-x: auto;
-  display: flex;
-  justify-content: center;
+  display: block;
 }
 
 .board-table {
   border-collapse: collapse;
   width: 100%;
-  max-width: 1000px;
+  table-layout: fixed;
 }
 
 .board-table thead th {
@@ -22,13 +24,17 @@
 .board-table td {
   padding: 8px;
   text-align: center;
+  /* ensure cells don't grow based on content */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .tile {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
+  width: 100%;
   height: 80px;
   background: linear-gradient(180deg, #ff8a00, #ff3b30);
   border: none;
