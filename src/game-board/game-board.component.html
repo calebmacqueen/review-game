@@ -25,4 +25,12 @@
       }
     </tbody>
   </table>
+
+  <question-modal
+    [open]="modalOpen"
+    [questionText]="selectedQuestion?.question ?? ''"
+    [points]="selectedQuestion?.points ?? null"
+    (close)="onModalClose()"
+    (awarded)="onAward($event)"
+  ></question-modal>
 </div>

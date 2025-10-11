@@ -1,0 +1,18 @@
+@if (open) {
+<div class="modal-backdrop">
+    <div class="modal">
+        <div class="modal-header">
+            <h3>Question</h3>
+        </div>
+        <div class="modal-body">
+            <p class="question-text">{{ questionText }}</p>
+            <p class="points">Points: {{ points }}</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn blue" (click)="award('blue')">Award Blue Team</button>
+            <button class="btn red" (click)="award('red')">Award Red Team</button>
+            <button class="btn close" (click)="onClose()">Close</button>
+        </div>
+    </div>
+</div>
+}
