@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameBoard } from '../../Data';
 import { ModalComponent } from '../modal/modal.component';
-import { ScoreChange, ScoreComponent } from './score/score.component';
+import { ScoreChange, ScoreComponent } from '../score/score.component';
 
 interface QuestionCell {
   points: number;

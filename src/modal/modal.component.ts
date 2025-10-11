@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ScoreChange } from '../game-board/score/score.component';
+import { ScoreChange } from '../score/score.component';
 
 export type Team = 'blue' | 'red';
 
