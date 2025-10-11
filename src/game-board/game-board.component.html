@@ -1,4 +1,6 @@
 <div class="game-board">
+  <score-board [blueScore]="blueScore" [redScore]="redScore" (change)="onAward($event)"></score-board>
+
   <table class="board-table" role="table" aria-label="Game board" [style.--cols]="board.length">
     <thead>
       <tr>
@@ -12,12 +14,18 @@
         <tr>
           @for (cat of board; let catIndex = $index; track cat) {
             <td>
+              <!-- determine id for the question -->
+              @let q = cat.questions[rowIndex];
+              @let qid = q.id ?? `${catIndex}-${rowIndex}`;
               <button
                 class="tile"
-                (click)="onTileClick(catIndex, rowIndex, cat.questions[rowIndex])"
+                [class.awarded-blue]="awarded[qid] === 'blue'"
+                [class.awarded-red]="awarded[qid] === 'red'"
+                [disabled]="awarded[qid] !== undefined"
+                (click)="onTileClick(q)"
                 type="button"
               >
-                {{ cat.questions[rowIndex].points }}
+                {{ q.points }}
               </button>
             </td>
           }
@@ -28,8 +36,8 @@
 
   <question-modal
     [open]="modalOpen"
-    [questionText]="selectedQuestion?.question ?? ''"
-    [points]="selectedQuestion?.points ?? null"
+    [questionText]="selectedQuestion.question"
+    [points]="selectedQuestion.points"
     (close)="onModalClose()"
     (awarded)="onAward($event)"
   ></question-modal>

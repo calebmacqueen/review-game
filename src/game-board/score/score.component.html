@@ -1,0 +1,18 @@
+<div class="score-board">
+  <div class="team blue">
+    <div class="label">Blue Team</div>
+    <div class="score">{{ blueScore }}</div>
+    <div class="controls">
+      <button (click)="sub('blue')">-100</button>
+      <button (click)="add('blue')">+100</button>
+    </div>
+  </div>
+  <div class="team red">
+    <div class="label">Red Team</div>
+    <div class="score">{{ redScore }}</div>
+    <div class="controls">
+      <button (click)="sub('red')">-100</button>
+      <button (click)="add('red')">+100</button>
+    </div>
+  </div>
+</div>

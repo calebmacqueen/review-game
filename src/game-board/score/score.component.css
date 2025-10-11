@@ -1,0 +1,18 @@
+.score-board {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.team {
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: white;
+  width: 160px;
+  text-align: center;
+}
+.team.blue { background: #2d6cdf; }
+.team.red { background: #d64545; }
+.label { font-weight: 600; margin-bottom: 6px; }
+.score { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+.controls button { margin: 0 4px; padding: 6px 8px; border-radius: 6px; border: none; cursor: pointer; }

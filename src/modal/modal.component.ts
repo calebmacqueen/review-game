@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ScoreChange } from '../game-board/score/score.component';
 
-export type Award = 'blue' | 'red' | null;
+export type Team = 'blue' | 'red';
 
 @Component({
     selector: 'question-modal',
@@ -13,14 +14,14 @@ export class ModalComponent {
     @Input() questionText!: string;
     @Input() points!: number;
     @Output() close = new EventEmitter<void>();
-    @Output() awarded = new EventEmitter<Award>();
+    @Output() awarded = new EventEmitter<ScoreChange>();
 
     onClose() {
         this.close.emit();
     }
 
-    award(team: Award) {
-        this.awarded.emit(team);
+    award(team: Team) {
+        this.awarded.emit({team: team, delta: this.points});
         this.onClose();
     }
 }
