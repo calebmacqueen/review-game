@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GameBoardComponent } from '../game-board/game-board.component';
-import { ThemeToggleComponent } from './theme-toggle.component';
+import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-root',

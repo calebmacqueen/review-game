@@ -17,7 +17,7 @@ interface QuestionCell {
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.css'],
   standalone: true,
-  imports: [CommonModule, QuestionDialogComponent, ScoreComponent, MatButtonModule, MatDialogModule]
+  imports: [CommonModule, ScoreComponent, MatButtonModule, MatDialogModule]
 })
 export class GameBoardComponent {
   board = GameBoard;
