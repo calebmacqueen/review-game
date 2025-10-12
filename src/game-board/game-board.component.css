@@ -32,7 +32,7 @@
   text-overflow: ellipsis;
 }
 
-.tile {
+.mdc-button.tile {
   display: inline-flex;
   align-items: center;
   justify-content: center;

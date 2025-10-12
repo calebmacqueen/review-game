@@ -4,11 +4,12 @@
 /* Light theme variables (default) */
 :root {
   --app-bg: #f3f4f6; /* light gray background */
-  --app-surface: #ffffff;
+  --app-surface: #F0F0F0;
   --app-text: #1f2937; /* dark gray text */
+  --mat-slide-toggle-label-text-color: #1f2937;
 
   /* Game board tiles */
-  --tile-bg: #f6c84c; /* gold */
+  --tile-bg: #a67c00; /* gold */
   --tile-hover: #ffdf7a; /* lighter gold on hover */
   --tile-text: #1f2937; /* dark gray text on tiles in light mode */
 
@@ -16,7 +17,7 @@
   --score-btn-bg: #f6c84c;
 
   /* Modal background (white in both modes per spec) */
-  --modal-bg: #ffffff;
+  --modal-bg: #F0F0F0;
 }
 
 /* Dark theme variables: toggle by adding .dark-theme to <body> */
@@ -24,6 +25,7 @@
   --app-bg: #121212; /* deep charcoal background */
   --app-surface: #1f1f1f;
   --app-text: #e5e7eb; /* light grey text */
+  --mat-slide-toggle-label-text-color: #e5e7eb;
 
   /* dark gold palette for tiles in dark mode */
   --tile-bg: #a67c00; /* dark gold */

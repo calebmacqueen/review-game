@@ -1,2 +1,38 @@
-.question-text { font-size: 1.1rem; margin-bottom: 8px; }
-.points { color: rgba(0,0,0,0.6); margin-bottom: 8px; }
+.question-card {
+	background: var(--surface, #f0f0f0);
+	border-radius: 10px;
+	padding: 12px;
+}
+
+.dialog-body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.question-text { font-size: 1.25rem; margin: 8px 0; color: var(--muted-text, rgba(0,0,0,0.6)); font-weight: 900; font-size: 3em;}
+.points { font-size: 1rem; margin: 4px 0 12px; color: var(--muted-text, rgba(0,0,0,0.6)); }
+
+.actions { display: flex; gap: 12px; justify-content: center; padding-bottom: 8px; }
+
+/* Team-colored buttons that match the rest of the app */
+.award-blue.mat-mdc-raised-button {
+	background: linear-gradient(180deg, #1e3a8a, #2563eb);
+	color: white;
+}
+.award-red.mat-mdc-raised-button {
+	background: linear-gradient(180deg, #7f1d1d, #dc2626);
+	color: white;
+}
+
+/* Slightly larger tap targets */
+.mat-raised-button { padding: 8px 14px; font-weight: 600; }
+
+/* Adapt to dark theme if variables are set */
+:root.dark-theme .award-blue.mat-mdc-raised-button {
+	background: linear-gradient(180deg, #20306a, #1f4bd1);
+}
+:root.dark-theme .award-red.mat-mdc-raised-button {
+	background: linear-gradient(180deg, #5b1313, #9b1f1f);
+}

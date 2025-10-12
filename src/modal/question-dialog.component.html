@@ -1,12 +1,12 @@
-<mat-card>
-  <mat-card-title>Question</mat-card-title>
+<mat-card class="question-card">
   <mat-card-content>
-    <p class="question-text">{{ data.questionText }}</p>
-    <p class="points">Points: {{ data.points }}</p>
+    <div class="dialog-body">
+      <p class="question-text">{{ data.questionText }}</p>
+      <p class="points">Points: {{ data.points }}</p>
+    </div>
   </mat-card-content>
-  <mat-card-actions align="end">
-    <button mat-raised-button color="primary" (click)="award('blue')">Award Blue Team</button>
-    <button mat-raised-button color="warn" (click)="award('red')">Award Red Team</button>
-    <button mat-stroked-button (click)="close()">Close</button>
+  <mat-card-actions align="end" class="actions">
+    <button mat-raised-button class="award-blue" (click)="award('blue')">Award Blue Team</button>
+    <button mat-raised-button class="award-red" (click)="award('red')">Award Red Team</button>
   </mat-card-actions>
 </mat-card>
