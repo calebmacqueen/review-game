@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 export interface ScoreChange {
   team: 'blue' | 'red';
@@ -9,7 +11,8 @@ export interface ScoreChange {
   selector: 'score-board',
   standalone: true,
   templateUrl: './score.component.html',
-  styleUrls: ['./score.component.css']
+  styleUrls: ['./score.component.css'],
+  imports: [MatCardModule, MatButtonModule]
 })
 export class ScoreComponent {
   @Input() blueScore = 0;

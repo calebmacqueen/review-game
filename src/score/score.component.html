@@ -1,18 +1,26 @@
 <div class="score-board">
-  <div class="team blue">
-    <div class="label">Blue Team</div>
-    <div class="score">{{ blueScore }}</div>
-    <div class="controls">
-      <button (click)="sub('blue')">-100</button>
-      <button (click)="add('blue')">+100</button>
-    </div>
-  </div>
-  <div class="team red">
-    <div class="label">Red Team</div>
-    <div class="score">{{ redScore }}</div>
-    <div class="controls">
-      <button (click)="sub('red')">-100</button>
-      <button (click)="add('red')">+100</button>
-    </div>
-  </div>
+  <mat-card class="team blue">
+    <mat-card-title>Blue Team</mat-card-title>
+    <mat-card-content>
+      <div class="team-row">
+        <div class="score">{{ blueScore }}</div>
+        <div class="controls">
+          <button mat-stroked-button color="primary" (click)="sub('blue')">-100</button>
+          <button mat-flat-button color="primary" (click)="add('blue')">+100</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="team red">
+    <mat-card-title>Red Team</mat-card-title>
+    <mat-card-content>
+      <div class="team-row">
+        <div class="score">{{ redScore }}</div>
+        <div class="controls">
+          <button mat-stroked-button color="warn" (click)="sub('red')">-100</button>
+          <button mat-flat-button color="warn" (click)="add('red')">+100</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

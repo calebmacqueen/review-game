@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { GameBoardComponent } from '../game-board/game-board.component';
+import { ThemeToggleComponent } from './theme-toggle.component';
 
 @Component({
   selector: 'app-root',
-  imports: [GameBoardComponent],
+  imports: [GameBoardComponent, ThemeToggleComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {}

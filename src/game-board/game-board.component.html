@@ -19,6 +19,7 @@
               @let qid = q.id ?? `${catIndex}-${rowIndex}`;
               <button
                 class="tile"
+                mat-flat-button
                 [class.awarded-blue]="awarded[qid] === 'blue'"
                 [class.awarded-red]="awarded[qid] === 'red'"
                 [disabled]="awarded[qid] !== undefined"
@@ -34,11 +35,5 @@
     </tbody>
   </table>
 
-  <question-modal
-    [open]="modalOpen"
-    [questionText]="selectedQuestion.question"
-    [points]="selectedQuestion.points"
-    (close)="onModalClose()"
-    (awarded)="onAward($event)"
-  ></question-modal>
+  <!-- MatDialog is used to show question details instead of a custom modal -->
 </div>

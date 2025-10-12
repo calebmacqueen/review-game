@@ -1,8 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameBoard } from '../../Data';
-import { ModalComponent } from '../modal/modal.component';
+import { QuestionDialogComponent } from '../modal/question-dialog.component';
 import { ScoreChange, ScoreComponent } from '../score/score.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 interface QuestionCell {
   points: number;
@@ -14,16 +17,15 @@ interface QuestionCell {
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.css'],
   standalone: true,
-  imports: [CommonModule, ModalComponent, ScoreComponent]
+  imports: [CommonModule, QuestionDialogComponent, ScoreComponent, MatButtonModule, MatDialogModule]
 })
 export class GameBoardComponent {
   board = GameBoard;
 
-  // modal state
-  //default question to guaruntee not null
-  selectedQuestion: QuestionCell = { points: 0, question: '' };
+  // default question to guaruntee not null
   selectedId: string | null = null;
-  modalOpen = false;
+
+  constructor(private dialog: MatDialog) {}
 
   // score state
   blueScore = 0;
@@ -33,26 +35,29 @@ export class GameBoardComponent {
   awarded: Record<string, 'blue' | 'red'> = {};
 
   onTileClick(cell: QuestionCell) {
-    this.selectedQuestion = cell;
-    // if the question has an id, capture it for reference
+    // capture id if present
     // @ts-ignore
-    this.selectedId = (cell as any).id;
-    this.modalOpen = true;
-  }
+    const qid = (cell as any).id ?? null;
+    this.selectedId = qid;
 
-  onModalClose() {
-    this.modalOpen = false;
-    // this.selectedQuestion = null;
-    this.selectedId = null;
+    const ref = this.dialog.open(QuestionDialogComponent, {
+      data: {
+        questionText: cell.question,
+        points: cell.points,
+        id: qid,
+      }
+    });
+
+    ref.afterClosed().subscribe((result: 'blue' | 'red' | null) => {
+      if (!result) { return; }
+
+      // create a ScoreChange-like object
+      const change: ScoreChange = { team: result, delta: cell.points };
+      this.onAward(change);
+    });
   }
 
   onAward(scoreChange: ScoreChange) {
-    if (!this.selectedQuestion) {
-      this.onModalClose();
-      return;
-    }
-
-    // const points = this.selectedQuestion.points;
     if (scoreChange.team === 'blue') {
       this.blueScore += scoreChange.delta;
     } else {
@@ -65,6 +70,6 @@ export class GameBoardComponent {
 
     // eslint-disable-next-line no-console
     console.log('Awarded', { team: scoreChange.team, id: this.selectedId, points: scoreChange.delta });
-    this.onModalClose();
+    this.selectedId = null;
   }
 }

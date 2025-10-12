@@ -1,3 +1,5 @@
+@import '../styles.css';
+
 .modal-backdrop {
   position: fixed;
   inset: 0;

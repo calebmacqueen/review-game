@@ -1,3 +1,5 @@
+@import '../styles.css';
+
 .score-board {
   display: flex;
   gap: 16px;
@@ -8,11 +10,28 @@
   padding: 8px 12px;
   border-radius: 8px;
   color: white;
-  width: 160px;
-  text-align: center;
+  width: 320px;
+  text-align: left;
 }
 .team.blue { background: #2d6cdf; }
 .team.red { background: #d64545; }
 .label { font-weight: 600; margin-bottom: 6px; }
-.score { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
-.controls button { margin: 0 4px; padding: 6px 8px; border-radius: 6px; border: none; cursor: pointer; }
+.team-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.score { font-size: 1.5rem; font-weight: 700; margin-right: 12px; }
+.controls button {
+  margin-left: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 520px) {
+  .score-board { flex-direction: column; align-items: stretch; }
+  .team { width: 100%; text-align: center; }
+  .team-row { flex-direction: column; gap: 8px; align-items: center; }
+  .controls button { margin-left: 0; }
+}

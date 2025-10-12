@@ -1,0 +1,6 @@
+.theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 1200;
+}
