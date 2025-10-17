@@ -11,7 +11,7 @@
 	text-align: center;
 }
 
-.question-text { font-size: 1.25rem; margin: 8px 0; color: var(--muted-text, rgba(0,0,0,0.6)); font-weight: 900; font-size: 3em;}
+.question-text { font-size: 1.5rem; margin: 8px 0; color: var(--muted-text, rgba(0,0,0,0.6)); font-weight: 900;}
 .points { font-size: 1rem; margin: 4px 0 12px; color: var(--muted-text, rgba(0,0,0,0.6)); }
 
 .actions { display: flex; gap: 12px; justify-content: center; padding-bottom: 8px; }

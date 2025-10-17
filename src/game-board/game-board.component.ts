@@ -25,7 +25,7 @@ export class GameBoardComponent {
   // default question to guaruntee not null
   selectedId: string | null = null;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) { }
 
   // score state
   blueScore = 0;
@@ -48,11 +48,10 @@ export class GameBoardComponent {
       }
     });
 
-    ref.afterClosed().subscribe((result: 'blue' | 'red' | null) => {
+    ref.afterClosed().subscribe((result: { team: 'blue' | 'red'; points: number } | null) => {
       if (!result) { return; }
 
-      // create a ScoreChange-like object
-      const change: ScoreChange = { team: result, delta: cell.points };
+      const change: ScoreChange = { team: result.team, delta: result.points };
       this.onAward(change);
     });
   }
