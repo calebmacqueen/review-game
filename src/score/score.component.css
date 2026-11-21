@@ -1,21 +1,21 @@
 @import '../styles.css';
 
 .score-board {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 12px;
   margin-bottom: 12px;
   margin-top: 12px;
 }
 .team {
+  box-sizing: border-box;
   padding: 8px 12px;
   border-radius: 8px;
   color: white;
-  width: 320px;
+  width: 100%;
+  min-width: 0;
   text-align: left;
 }
-.team.blue { background: #2d6cdf; }
-.team.red { background: #d64545; }
 .label { font-weight: 600; margin-bottom: 6px; }
 .team-row {
   display: flex;
@@ -24,20 +24,15 @@
 }
 .score { font-size: 1.5rem; font-weight: 700; margin-right: 12px; }
 .controls button {
-  margin-left: 6px;
-  padding: 6px 10px;
+  margin-left: 4px;
+  padding: 4px 8px;
   border-radius: 6px;
-  border: 2px solid var(--app-text);
-  background-color: var(--tile-bg);
-}
-
-.controls .red-subtract {
-  color: #d64545;
+  color: #1f2937;
+  background-color: white;
 }
 
 @media (max-width: 520px) {
-  .score-board { flex-direction: column; align-items: stretch; }
-  .team { width: 100%; text-align: center; }
+  .team { text-align: center; }
   .team-row { flex-direction: column; gap: 8px; align-items: center; }
   .controls button { margin-left: 0; }
 }

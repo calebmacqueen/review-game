@@ -1,29 +1,31 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { DEFAULT_TEAMS, TEAM_COLORS, Team, TeamConfiguration } from '../interfaces/team';
 
 export interface ScoreChange {
-  team: 'blue' | 'red';
+  team: Team;
   delta: number;
 }
 
 @Component({
   selector: 'score-board',
-  standalone: true,
   templateUrl: './score.component.html',
   styleUrls: ['./score.component.css'],
   imports: [MatCardModule, MatButtonModule]
 })
 export class ScoreComponent {
-  @Input() blueScore = 0;
-  @Input() redScore = 0;
-  @Output() change = new EventEmitter<ScoreChange>();
+  readonly teams = input<TeamConfiguration[]>(DEFAULT_TEAMS);
+  readonly scores = input.required<Record<Team, number>>();
+  readonly enabledTeams = computed(() => this.teams().filter((team) => team.enabled));
+  readonly teamColors = TEAM_COLORS;
+  readonly change = output<ScoreChange>();
 
-  add(team: 'blue' | 'red', amount = 100) {
+  add(team: Team, amount = 100) {
     this.change.emit({ team, delta: amount });
   }
 
-  sub(team: 'blue' | 'red', amount = 100) {
+  sub(team: Team, amount = 100) {
     this.change.emit({ team, delta: -amount });
   }
 }

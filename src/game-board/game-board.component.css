@@ -68,6 +68,21 @@
   cursor: default;
   box-shadow: none;
 }
+.tile.awarded-green {
+  background: #15803d;
+  cursor: default;
+  box-shadow: none;
+}
+.tile.awarded-orange {
+  background: #c2410c;
+  cursor: default;
+  box-shadow: none;
+}
+.tile.awarded-purple {
+  background: #7e22ce;
+  cursor: default;
+  box-shadow: none;
+}
 .tile[disabled] {
   opacity: 0.9;
 }

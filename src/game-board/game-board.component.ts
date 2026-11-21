@@ -1,11 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameBoard } from '../../Data';
 import { QuestionDialogComponent } from '../modal/question-dialog.component';
 import { ScoreChange, ScoreComponent } from '../score/score.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { Category } from '../interfaces/category';
+import { DEFAULT_TEAMS, Team, TeamConfiguration } from '../interfaces/team';
 
 interface QuestionCell {
   points: number;
@@ -20,7 +21,8 @@ interface QuestionCell {
   imports: [CommonModule, ScoreComponent, MatButtonModule, MatDialogModule]
 })
 export class GameBoardComponent {
-  board = GameBoard;
+  board = input.required<Category[]>();
+  teams = input<TeamConfiguration[]>(DEFAULT_TEAMS);
 
   // default question to guaruntee not null
   selectedId: string | null = null;
@@ -28,11 +30,16 @@ export class GameBoardComponent {
   constructor(private dialog: MatDialog) { }
 
   // score state
-  blueScore = 0;
-  redScore = 0;
+  scores: Record<Team, number> = {
+    blue: 0,
+    red: 0,
+    green: 0,
+    orange: 0,
+    purple: 0
+  };
 
-  // map of question id -> 'blue'|'red' to mark awarded tiles
-  awarded: Record<string, 'blue' | 'red'> = {};
+  // map of question id to the team that awarded it
+  awarded: Record<string, Team> = {};
 
   onTileClick(cell: QuestionCell) {
     // capture id if present
@@ -44,11 +51,12 @@ export class GameBoardComponent {
       data: {
         questionText: cell.question,
         points: cell.points,
+        teams: this.teams().filter((team) => team.enabled),
         id: qid,
       }
     });
 
-    ref.afterClosed().subscribe((result: { team: 'blue' | 'red'; points: number } | null) => {
+    ref.afterClosed().subscribe((result: { team: Team; points: number } | null) => {
       if (!result) { return; }
 
       const change: ScoreChange = { team: result.team, delta: result.points };
@@ -57,11 +65,7 @@ export class GameBoardComponent {
   }
 
   onAward(scoreChange: ScoreChange) {
-    if (scoreChange.team === 'blue') {
-      this.blueScore += scoreChange.delta;
-    } else {
-      this.redScore += scoreChange.delta;
-    }
+    this.scores[scoreChange.team] += scoreChange.delta;
 
     if (this.selectedId) {
       this.awarded[this.selectedId] = scoreChange.team;

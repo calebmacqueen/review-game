@@ -1,0 +1,109 @@
+:host {
+  display: block;
+}
+
+mat-dialog-content {
+  max-height: 65vh;
+}
+
+h3 {
+  margin: 8px 0 12px;
+}
+
+.appearance-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant, #ccc);
+}
+
+.appearance-setting h3 {
+  margin: 0;
+}
+
+.team-settings {
+  padding: 8px 0 12px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant, #ccc);
+}
+
+.team-setting {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-left: 6px solid var(--team-color);
+  border-radius: 4px;
+}
+
+.team-name,
+.team-enabled {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.team-name input {
+  flex: 1;
+  min-width: 0;
+}
+
+.team-enabled {
+  white-space: nowrap;
+}
+
+.category {
+  min-width: 0;
+  margin: 16px 0;
+  padding: 12px;
+  border: 1px solid var(--mat-sys-outline-variant, #ccc);
+  border-radius: 8px;
+}
+
+.category legend {
+  padding: 0 6px;
+  font-weight: 600;
+}
+
+.category > label,
+.question-setting label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.question-setting {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+input,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+@media (max-width: 600px) {
+  .team-setting {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .question-setting {
+    grid-template-columns: minmax(0, 1fr) 80px;
+    gap: 8px;
+  }
+}

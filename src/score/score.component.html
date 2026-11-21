@@ -1,26 +1,20 @@
 <div class="score-board">
-  <mat-card class="team blue">
-    <mat-card-title>Blue Team</mat-card-title>
-    <mat-card-content>
-      <div class="team-row">
-        <div class="score">{{ blueScore }}</div>
-        <div class="controls">
-          <button mat-stroked-button color="primary" (click)="sub('blue')">-100</button>
-          <button mat-flat-button color="primary" (click)="add('blue')">+100</button>
+  @for (team of enabledTeams(); track team.id) {
+    <mat-card
+      class="team"
+      [attr.data-team]="team.id"
+      [style.background-color]="teamColors[team.id]"
+    >
+      <mat-card-title>{{ team.name }}</mat-card-title>
+      <mat-card-content>
+        <div class="team-row">
+          <div class="score">{{ scores()[team.id] }}</div>
+          <div class="controls">
+            <button mat-stroked-button type="button" (click)="sub(team.id)">-100</button>
+            <button mat-flat-button type="button" (click)="add(team.id)">+100</button>
+          </div>
         </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="team red">
-    <mat-card-title>Red Team</mat-card-title>
-    <mat-card-content>
-      <div class="team-row">
-        <div class="score">{{ redScore }}</div>
-        <div class="controls">
-          <button mat-stroked-button color="warn" (click)="sub('red')" class="red-subtract">-100</button>
-          <button mat-flat-button color="warn" (click)="add('red')">+100</button>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+      </mat-card-content>
+    </mat-card>
+  }
 </div>

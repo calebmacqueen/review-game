@@ -1,4 +1,12 @@
 <div class="app-root">
-  <theme-toggle></theme-toggle>
-  <game-board></game-board>
+  <button
+    class="settings-button"
+    mat-stroked-button
+    type="button"
+    aria-label="Open game settings"
+    (click)="openSettings()"
+  >
+    Settings
+  </button>
+  <game-board [board]="board()" [teams]="teams()"></game-board>
 </div>
