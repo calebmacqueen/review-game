@@ -14,25 +14,27 @@
 .question-text { font-size: 1.5rem; margin: 8px 0; color: var(--muted-text, rgba(0,0,0,0.6)); font-weight: 900;}
 .points { font-size: 1rem; margin: 4px 0 12px; color: var(--muted-text, rgba(0,0,0,0.6)); }
 
-.actions { display: flex; gap: 12px; justify-content: center; padding-bottom: 8px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; padding-bottom: 8px; }
+.no-teams { margin: 0; align-self: center; }
 
-/* Team-colored buttons that match the rest of the app */
-.award-blue.mat-mdc-raised-button {
-	background: linear-gradient(180deg, #1e3a8a, #2563eb);
+.award-team.mat-mdc-raised-button {
 	color: white;
 }
-.award-red.mat-mdc-raised-button {
-	background: linear-gradient(180deg, #7f1d1d, #dc2626);
-	color: white;
+.award-team[data-team='blue'].mat-mdc-raised-button {
+	background: #2d6cdf;
+}
+.award-team[data-team='red'].mat-mdc-raised-button {
+	background: #b91c1c;
+}
+.award-team[data-team='green'].mat-mdc-raised-button {
+	background: #15803d;
+}
+.award-team[data-team='orange'].mat-mdc-raised-button {
+	background: #c2410c;
+}
+.award-team[data-team='purple'].mat-mdc-raised-button {
+	background: #7e22ce;
 }
 
 /* Slightly larger tap targets */
 .mat-raised-button { padding: 8px 14px; font-weight: 600; }
-
-/* Adapt to dark theme if variables are set */
-:root.dark-theme .award-blue.mat-mdc-raised-button {
-	background: linear-gradient(180deg, #20306a, #1f4bd1);
-}
-:root.dark-theme .award-red.mat-mdc-raised-button {
-	background: linear-gradient(180deg, #5b1313, #9b1f1f);
-}

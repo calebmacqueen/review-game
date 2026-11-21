@@ -1,0 +1,85 @@
+<h2 mat-dialog-title>Game settings</h2>
+
+<mat-dialog-content>
+  <section class="appearance-setting" aria-label="Appearance settings">
+    <h3>Appearance</h3>
+    <theme-toggle></theme-toggle>
+  </section>
+
+  <section class="team-settings" aria-label="Team settings">
+    <h3>Teams</h3>
+    @for (team of data.teams; track team.id) {
+      <div
+        class="team-setting"
+        [attr.data-team]="team.id"
+        [style.--team-color]="teamColors[team.id]"
+      >
+        <label class="team-name">
+          Team name
+          <input
+            type="text"
+            [name]="'team-name-' + team.id"
+            [(ngModel)]="team.name"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </label>
+        <label class="team-enabled">
+          <input
+            type="checkbox"
+            [name]="'team-enabled-' + team.id"
+            [(ngModel)]="team.enabled"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          Enabled
+        </label>
+      </div>
+    }
+  </section>
+
+  <section class="categories" aria-label="Game board settings">
+    <h3>Categories and questions</h3>
+    @for (category of data.board; track $index; let categoryIndex = $index) {
+      <fieldset class="category">
+        <legend>{{ category.name }}</legend>
+        <label>
+          Category name
+          <input
+            type="text"
+            [name]="'category-' + categoryIndex"
+            [(ngModel)]="category.name"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </label>
+
+        @for (question of category.questions; track $index; let questionIndex = $index) {
+          <div class="question-setting">
+            <label>
+              Question {{ questionIndex + 1 }}
+              <textarea
+                [name]="'question-' + categoryIndex + '-' + questionIndex"
+                [(ngModel)]="question.question"
+                [ngModelOptions]="{ standalone: true }"
+                rows="2"
+              ></textarea>
+            </label>
+            <label class="points-field">
+              Points
+              <input
+                type="number"
+                min="0"
+                [name]="'points-' + categoryIndex + '-' + questionIndex"
+                [(ngModel)]="question.points"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </label>
+          </div>
+        }
+      </fieldset>
+    }
+  </section>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
+  <button mat-flat-button color="primary" type="button" (click)="save()">Save</button>
+</mat-dialog-actions>

@@ -1,18 +1,18 @@
 <div class="game-board">
-  <score-board [blueScore]="blueScore" [redScore]="redScore" (change)="onAward($event)"></score-board>
+  <score-board [scores]="scores" [teams]="teams()" (change)="onAward($event)"></score-board>
 
-  <table class="board-table" role="table" aria-label="Game board" [style.--cols]="board.length">
+  <table class="board-table" role="table" aria-label="Game board" [style.--cols]="board().length">
     <thead>
       <tr>
-        @for (cat of board; track cat) {
+        @for (cat of board(); track cat) {
           <th>{{ cat.name }}</th>
         }
       </tr>
     </thead>
     <tbody>
-      @for (_row of board[0].questions; let rowIndex = $index; track _row) {
+      @for (_row of board()[0].questions; let rowIndex = $index; track _row) {
         <tr>
-          @for (cat of board; let catIndex = $index; track cat) {
+          @for (cat of board(); let catIndex = $index; track cat) {
             <td>
               <!-- determine id for the question -->
               @let q = cat.questions[rowIndex];
@@ -22,6 +22,9 @@
                 mat-flat-button
                 [class.awarded-blue]="awarded[qid] === 'blue'"
                 [class.awarded-red]="awarded[qid] === 'red'"
+                [class.awarded-green]="awarded[qid] === 'green'"
+                [class.awarded-orange]="awarded[qid] === 'orange'"
+                [class.awarded-purple]="awarded[qid] === 'purple'"
                 [disabled]="awarded[qid] !== undefined"
                 (click)="onTileClick(q)"
                 type="button"
